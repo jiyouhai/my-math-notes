@@ -2,12 +2,51 @@
 <html>
 <head>
     <title>我的数学笔记</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        #content {
+            flex: 1 0 70%;
+            max-width: 800px;
+            margin: 20px;
+        }
+        #toc {
+            flex: 1 0 20%;
+            max-width: 200px;
+            position: sticky;
+            top: 20px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        @media (max-width: 600px) {
+            #content, #toc {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>欢迎来到我的数学笔记网站！</h1>
-    <h2>给新生的建议</h2>
-    <p>在这里写下你的建议。</p>
-    <h2>课程答案</h2>
-    <p>在这里添加你的答案的链接。</p>
+    <div id="toc">
+        <h2>目录</h2>
+        <ul>
+            <li><a href="#advice">给新生的建议</a></li>
+            <li><a href="#answers">课程答案</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <h1 id="advice">给新生的建议</h1>
+        <p>在这里写下你的建议。</p>
+        <h1 id="answers">课程答案</h1>
+        <p>在这里添加你的答案的链接。</p>
+    </div>
 </body>
 </html>
