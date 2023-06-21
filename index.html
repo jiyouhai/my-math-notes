@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的数学笔记</title>
+    <title>天大数学系新生指北</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: row-reverse; /* 将目录放到左边 */
             justify-content: center;
             align-items: flex-start;
             flex-wrap: wrap;
@@ -16,6 +17,7 @@
             flex: 1 0 70%;
             max-width: 800px;
             margin: 20px;
+            font-size: 20px; /* 增大字体大小 */
         }
         #toc {
             flex: 1 0 20%;
@@ -41,60 +43,14 @@
             <li><a href="#advice">给新生的建议</a></li>
             <li><a href="#answers">课程答案</a></li>
         </ul>
-   <!DOCTYPE html>
-<html>
-<head>
-    <title>我的数学笔记</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-        #content {
-            flex: 1 0 70%;
-            max-width: 800px;
-            margin: 20px;
-        }
-        #toc {
-            flex: 1 0 20%;
-            max-width: 200px;
-            position: sticky;
-            top: 20px;
-            margin: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-        @media (max-width: 600px) {
-            #content, #toc {
-                flex-basis: 100%;
-                max-width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div id="toc">
-        <h2>目录</h2>
-        <ul>
-            <li><a href="#advice">给新生的建议</a></li>
-            <li><a href="#answers">课程答案</a></li>
-        </ul>
-   <div id="content">
-    <h1 id="advice">给新生的建议</h1>
-    <p>在此，分享一些我的相关感悟。</p>
-    <p>我来天大的最开始，最忧心的一件事儿就是课程和教材找不到答案。所以我的大一上学期过得很艰难，当时就是各种教材各种地方想办法拼凑出课后习题的答案。</p>
-    <p>这也是我做这个网页的初衷，我希望能解决大家作业和答案相关问题，并且把我学过课程的电子版教材推荐网课分享给大家。</p>
-    <h1 id="answers">课程答案</h1>
-    <!-- 在这里添加你的答案的链接。 -->
-</div>
-
-</body>
-</html>
-
+    </div>
+    <div id="content">
+        <h1 id="advice">给新生的建议</h1>
+        <p>在此，分享一些我的相关感悟。</p>
+        <p>我来天大的最开始，最忧心的一件事儿就是课程和教材找不到答案。所以我的大一上学期过得很艰难，当时就是各种教材各种地方想办法拼凑出课后习题的答案。</p>
+        <p>这也是我做这个网页的初衷，我希望能解决大家作业和答案相关问题，并且把我学过课程的电子版教材推荐网课分享给大家。</p>
+        <h1 id="answers">课程答案</h1>
+        <!-- 在这里添加你的答案的链接。 -->
+    </div>
 </body>
 </html>
