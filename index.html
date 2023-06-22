@@ -143,21 +143,23 @@ function toggleContent(btn) {
 
 // 直接在页面加载完毕后，将所有的.collapsibleContent设置为可折叠
 window.onload = function() {
-    var coll = document.getElementsByClassName('collapsible');
-    for (var i = 0; i < coll.length; i++) {
-        var content = coll[i].nextElementSibling;
-        content.style.display = "none";
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
+        var coll = document.getElementsByTagName('li');
+        for (var i = 0; i < coll.length; i++) {
+            var sublist = coll[i].getElementsByTagName('ul')[0];
+            if(sublist) {
+                sublist.style.display = 'none';
+                coll[i].addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    var sublist = this.getElementsByTagName('ul')[0];
+                    if (sublist.style.display === "block") {
+                        sublist.style.display = "none";
+                    } else {
+                        sublist.style.display = "block";
+                    }
+                });
             }
-        });
+        }
     }
-}
 
 function toggleToc() {
     var toc = document.getElementById('toc');
