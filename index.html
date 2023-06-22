@@ -149,53 +149,62 @@
     list-style-type: none;
     padding: 0;
 }
-
 /* 夜间模式样式 */
 body.dark-mode {
-    background-color: #333;
+    background-color: #1a1b2f; /* 深蓝灰色 */
     color: #fff;
 }
 
 body.dark-mode #toc, body.dark-mode #content {
-    background-color: #555;
+    background-color: #1a1b2f; /* 更改目录和内容的背景颜色 */
 }
 
 body.dark-mode a {
-    color: #0ff;
+    color: #0ff; /* 保持链接颜色不变 */
 }
 
-body.dark-mode #modeSwitch::before {
-    content: "🌞";
+body.dark-mode #themeSwitch::before {
+    content: "🌞"; /* 当处于夜间模式时，主题切换按钮显示太阳图标 */
 }
 
 /* 白天模式样式 */
 body.light-mode {
-    background-color: #fff;
+    background-color: #fff; /* 白色 */
     color: #000;
 }
 
 body.light-mode #toc, body.light-mode #content {
-    background-color: #ddd;
+    background-color: #fff; /* 更改目录和内容的背景颜色 */
 }
 
 body.light-mode a {
-    color: #00f;
+    color: #00f; /* 保持链接颜色不变 */
 }
 
-body.light-mode #modeSwitch::before {
-    content: "🌙";
+body.light-mode #themeSwitch::before {
+    content: "🌙"; /* 当处于白天模式时，主题切换按钮显示月亮图标 */
 }
+
 body.full-screen {
     width: 100%;
     overflow: auto;
 }
-#header {
+
+  #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-end;
+            background-color: rgba(255, 255, 255, 0.8);
         }
-        @media (max-width: 600px) {
+
+        #header button {
+            margin: 10px;
+        }
+         @media screen and (max-width: 600px) {
             #header button {
-                font-size: 2rem;
+                font-size: 3rem;
             }
         }
 body.menu-open {
