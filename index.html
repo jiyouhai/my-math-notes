@@ -308,30 +308,10 @@ body.menu-open #toc {
         </div>
     </div>
 
-    <script>
-
-       function toggleMenu() {
-    var menu = document.getElementById('menu');
-    var content = document.getElementById('content');
-    
-    if (menu.style.width === '0px' || menu.style.width === '') {
-        // 当菜单关闭时，打开它
-        menu.style.width = '20%';
-        content.classList.remove('full-screen');
-        content.classList.add('not-full-screen');
-    } else {
-        // 当菜单打开时，关闭它
-        menu.style.width = '0px';
-        content.classList.remove('not-full-screen');
-        content.classList.add('full-screen');
-    }
-}
-
-// 绑定按钮的点击事件
-document.getElementById('your-button-id').addEventListener('click', toggleMenu);
-
-
-      var index = lunr(function () {
+  
+<script>
+    // 用 lunr.js 为你的网站添加全文搜索功能
+    var index = lunr(function () {
         this.ref('id')
         this.field('text')
 
@@ -351,119 +331,85 @@ document.getElementById('your-button-id').addEventListener('click', toggleMenu);
         // 注意，这里需要你根据你的具体需求自行实现
         console.log(results)
     }
-        function toggleContent(btn) {
-            var content = btn.nextElementSibling;
-            if (content.style.display === "none") {
-                content.style.display = "block";
-            } else {
-                content.style.display = "none";
+
+    // 切换夜间/白天模式
+    function toggleMode() {
+        var body = document.body;
+        if (body.classList.contains('dark-mode')) {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+        } else {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+        }
+    }
+
+    // 切换菜单
+    function toggleMenu() {
+        var menu = document.getElementById('menu');
+        var content = document.getElementById('content');
+        menu.classList.toggle('open');
+        if(content.classList.contains('not-full-screen')){
+            content.classList.remove('not-full-screen');
+            content.classList.add('full-screen');
+        } else {
+            content.classList.remove('full-screen');
+            content.classList.add('not-full-screen');
+        }
+    }
+
+    // 隐藏或显示头部
+    var lastScrollTop = 0;
+    window.addEventListener("scroll", function() {
+        var header = document.getElementById('header');
+        var st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop){
+            header.style.top = "-50px";  
+        } else {
+            header.style.top = "0";
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+    }, false);
+
+    // 切换搜索输入框显示
+    document.getElementById('searchButton').addEventListener('click', function() {
+        var input = document.getElementById('searchInput');
+        if (input.style.display === 'none') {
+            input.style.display = 'block';
+            input.focus();
+        } else {
+            input.style.display = 'none';
+        }
+    });
+
+    // 处理搜索输入
+    document.getElementById('searchInput').addEventListener('input', function() {
+        search(this.value);
+    });
+
+    // 在页面加载时，对每个含有子列表的列表项进行处理
+    window.onload = function() {
+        var coll = document.getElementsByTagName('li');
+        for (var i = 0; i < coll.length; i++) {
+            var sublist = coll[i].getElementsByTagName('ul')[0];
+            if(sublist) {
+                sublist.style.display = 'none';
+                coll[i].addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    var sublist = this.getElementsByTagName('ul')[0];
+                    if (sublist.style.display === "block") {
+                        sublist.style.display = "none";
+                        this.classList.remove('opened');
+                    } else {
+                        sublist.style.display = "block";
+                        this.classList.add('opened');
+                    }
+                });
             }
         }
-window.onload = function() {
-    var coll = document.getElementsByTagName('li');
-    for (var i = 0; i < coll.length; i++) {
-        var sublist = coll[i].getElementsByTagName('ul')[0];
-        if(sublist) {
-            sublist.style.display = 'none';
-            coll[i].addEventListener("click", function(e) {
-                e.stopPropagation();
-                var sublist = this.getElementsByTagName('ul')[0];
-                if (sublist.style.display === "block") {
-                    sublist.style.display = "none";
-                    this.classList.remove('opened');  // 添加这一行
-                } else {
-                    sublist.style.display = "block";
-                    this.classList.add('opened');  // 添加这一行
-                }
-            });
-        }
     }
-}
+</script>
 
-
-        function toggleToc() {
-            var toc = document.getElementById('toc');
-            if (toc.classList.contains('minimized')) {
-                toc.classList.remove('minimized');
-            } else {
-                toc.classList.add('minimized');
-            }
-        }
-        function toggleMenu() {
-    var menu = document.getElementById('menu');
-    var content = document.getElementById('content');
-    menu.classList.toggle('open');
-    if(content.classList.contains('not-full-screen')){
-        content.classList.remove('not-full-screen');
-        content.classList.add('full-screen');
-    } else {
-        content.classList.remove('full-screen');
-        content.classList.add('not-full-screen');
-    }
-}
-
-        document.getElementById('searchButton').addEventListener('click', function() {
-    var input = document.getElementById('searchInput');
-    if (input.style.display === 'none') {
-        input.style.display = 'block';
-        input.focus();
-    } else {
-        input.style.display = 'none';
-    }
-});
-
-document.getElementById('searchInput').addEventListener('input', function() {
-    search(this.value);
-});
-
-        // 切换夜间/白天模式
-function toggleMode() {
-    var body = document.body;
-    if (body.classList.contains('dark-mode')) {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-    } else {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-    }
-}
-        // ...你的其他JavaScript代码...
-
-var lastScrollTop = 0;
-window.addEventListener("scroll", function() {
-    var header = document.getElementById('header');
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop){
-        // 在向下滚动时，隐藏header
-        header.style.top = "-50px";  // -50px应与header的高度相同
-    } else {
-        // 在向上滚动时，显示header
-        header.style.top = "0";
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
-}, false);
-
-function toggleMenu() {
-    document.body.classList.toggle('menu-open');
-}
-function toggleMenu() {
-    var menu = document.getElementById('menu');
-    var content = document.getElementById('content');
-    menu.classList.toggle('open');
-    if(content.classList.contains('not-full-screen')){
-        content.classList.remove('not-full-screen');
-        content.classList.add('full-screen');
-    } else {
-        content.classList.remove('full-screen');
-        content.classList.add('not-full-screen');
-    }
-}
-
-
-
-
-
-    </script>
 <div id="content" class="full-screen">
     <h1 id="advice">给新生的建议</h1>
     <p>在此，分享一些我的相关感悟。</p>
