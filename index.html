@@ -30,6 +30,8 @@
             padding: 10px;
             min-width: 200px; /* 新增 */
         }
+        .collapsibleContent {
+            display: none;
         @media (max-width: 600px) {
             #content, #toc {
                 flex-basis: 100%;
@@ -41,7 +43,7 @@
 <body>
    <div id="toc">
     <h2>目录</h2>
-    <button onclick="myFunction()">专业课课程指导</button>
+    <button class="collapsible" onclick="toggleContent(this)">专业课课程指导</button>
     <div id="myDIV" style="display: none;">
         <ul>
             <li><a href="#first-year-fall">大一上</a>
@@ -85,16 +87,33 @@
 </div>
 
 <script>
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
+function toggleContent(btn) {
+  var content = btn.nextElementSibling;
+  if (content.style.display === "none") {
+    content.style.display = "block";
   } else {
-    x.style.display = "none";
+    content.style.display = "none";
+  }
+}
+
+// 直接在页面加载完毕后，将所有的.collapsibleContent设置为可折叠
+window.onload = function() {
+  var coll = document.getElementsByClassName('collapsible');
+  for (var i = 0; i < coll.length; i++) {
+    var content = coll[i].nextElementSibling;
+    content.style.display = "none";
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
   }
 }
 </script>
-
 <div id="content">
     <h1 id="advice">给新生的建议</h1>
     <p>在此，分享一些我的相关感悟。</p>
