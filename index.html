@@ -34,12 +34,7 @@
             height: 0px;
             overflow: hidden;
         }
-#menu {
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    /* 更多样式... */
-}
+
 #content {
     margin-left: 220px; /* Desktop version */
     /* 更多样式... */
@@ -190,6 +185,27 @@ body.menu-open #toc {
 #toc li:before {
     content: "> ";
 }
+        #menu {
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+}
+
+#menu.open {
+    transform: translateX(0);
+}
+
+#menu ul {
+    padding-left: 0;
+}
+
+#menu ul ul {
+    padding-left: 0;
+}
+
+#menu li:before {
+    content: "> ";
+}
+
     </style>
     <script src="https://unpkg.com/lunr/lunr.js"></script>
 </head>
@@ -350,6 +366,10 @@ window.addEventListener("scroll", function() {
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open');
+}
+function toggleMenu() {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('open');
 }
 
 
