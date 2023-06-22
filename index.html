@@ -62,9 +62,16 @@
             top: 10px;
             right: 10px;
         }
+        #toc.minimized {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+}
+
     </style>
 </head>
 <body>
+   <button id="toggleButton" onclick="toggleToc()">Toggle TOC</button>
    <div id="toc">
     <h2>目录</h2>
     <button onclick="toggleContent(this)">专业课课程指导</button>
@@ -146,6 +153,16 @@ function toggleToc() {
         toc.classList.add('minimized');
     }
 }
+
+function toggleToc() {
+  var toc = document.getElementById('toc');
+  if (toc.classList.contains('minimized')) {
+    toc.classList.remove('minimized');
+  } else {
+    toc.classList.add('minimized');
+  }
+}
+
 </script>
 <div id="content">
     <h1 id="advice">给新生的建议</h1>
