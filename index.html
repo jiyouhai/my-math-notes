@@ -168,10 +168,28 @@ body.light-mode #modeSwitch::before {
     margin: 10px;
 }
 /* ...你的其他CSS代码... */
-
-
-
-
+body.menu-open {
+    padding-left: 300px;  /* 需要调整，以适应你的菜单宽度 */
+}
+#toc {
+    position: fixed;
+    top: 0;
+    left: -300px;  /* 需要调整，以适应你的菜单宽度 */
+    width: 300px;  /* 需要调整，以适应你的菜单宽度 */
+    height: 100%;
+    overflow: auto;
+    transition: left 0.3s ease;
+}
+body.menu-open #toc {
+    left: 0;
+}
+#toc ul {
+    list-style-type: none;
+    padding: 0;
+}
+#toc li:before {
+    content: "> ";
+}
     </style>
     <script src="https://unpkg.com/lunr/lunr.js"></script>
 </head>
@@ -330,7 +348,10 @@ window.addEventListener("scroll", function() {
     lastScrollTop = st <= 0 ? 0 : st;
 }, false);
 
-// ...你的其他JavaScript代码...
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
+
 
 
     </script>
