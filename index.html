@@ -190,18 +190,14 @@ body.full-screen {
     overflow: auto;
 }
 #header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8); /* 添加半透明背景，可根据需要调整 */
-}
-#header button {
-    margin: 10px;
-}
-/* ...你的其他CSS代码... */
+            display: flex;
+            justify-content: space-around;
+        }
+        @media (max-width: 600px) {
+            #header button {
+                font-size: 2rem;
+            }
+        }
 body.menu-open {
     padding-left: 300px;  /* 需要调整，以适应你的菜单宽度 */
 }
