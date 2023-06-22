@@ -8,31 +8,31 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: row-reverse; /* 将目录放到左边 */
             justify-content: center;
             align-items: flex-start;
             flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            box-sizing: border-box;
         }
         #content {
-            flex: 1 0 70%;
+            flex: 1;
             max-width: 800px;
-            margin: 20px;
             font-size: 20px; /* 增大字体大小 */
-            min-width: 400px; /* 新增 */
+            box-sizing: border-box;
         }
         #toc {
-            flex: 1 0 20%;
-            max-width: 200px;
+            flex: 0 0 200px;
             position: sticky;
             top: 20px;
-            margin: 20px;
             border: 1px solid #ccc;
             padding: 10px;
-            min-width: 200px; /* 新增 */
+            box-sizing: border-box;
         }
         .collapsibleContent {
             display: none;
-        @media (max-width: 600px) {
+        }
+        @media (max-width: 992px) {
             #content, #toc {
                 flex-basis: 100%;
                 max-width: 100%;
@@ -44,7 +44,7 @@
    <div id="toc">
     <h2>目录</h2>
     <button class="collapsible" onclick="toggleContent(this)">专业课课程指导</button>
-    <div id="myDIV" style="display: none;">
+    <div class="collapsibleContent">
         <ul>
             <li><a href="#first-year-fall">大一上</a>
                 <ul>
