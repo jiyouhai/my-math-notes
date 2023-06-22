@@ -75,7 +75,6 @@
         background-color: #999;  /* 鼠标悬停时改变背景色 */
         cursor: pointer;  /* 鼠标悬停时显示手形光标 */
     }
-</style>
 
         #toc.minimized {
   width: 0px;
@@ -177,6 +176,10 @@ function toggleToc() {
     toc.classList.add('minimized');
   }
 }
+document.getElementById('toggleButton').addEventListener('click', function() {
+  var toc = document.getElementById('toc');
+  toc.classList.toggle('minimized');
+});
 
 </script>
 <div id="content">
