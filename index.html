@@ -57,21 +57,36 @@
                 margin: 10px;
             }
         }
-        #toggleButton {
-            position: fixed;  /* 让按钮浮动 */
-            top: 10px;
-            right: 10px;
-        }
+        <style>
+    /* ...你现有的CSS代码... */
+
+    #toggleButton {
+        position: fixed;  /* 让按钮浮动 */
+        top: 10px;
+        right: 10px;
+        width: 50px;  /* 控制按钮的宽度 */
+        height: 50px;  /* 控制按钮的高度 */
+        border-radius: 50%;  /* 让按钮变为圆形 */
+        background-color: #ccc;  /* 设置按钮的背景色 */
+        border: none;  /* 去掉边框 */
+        text-indent: -9999px;  /* 隐藏按钮上的文本 */
+    }
+    #toggleButton:hover {
+        background-color: #999;  /* 鼠标悬停时改变背景色 */
+        cursor: pointer;  /* 鼠标悬停时显示手形光标 */
+    }
+</style>
+
         #toc.minimized {
-  width: 50px;
-  height: 50px;
+  width: 0px;
+  height: 0px;
   overflow: hidden;
 }
 
     </style>
 </head>
 <body>
-   <button id="toggleButton" onclick="toggleToc()">Toggle TOC</button>
+   <button id="toggleButton" onclick="toggleToc()"></button>
    <div id="toc">
     <h2>目录</h2>
     <button onclick="toggleContent(this)">专业课课程指导</button>
