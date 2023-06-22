@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
-<button id="toggleButton" onclick="toggleToc()">☰</button>
-<button id="modeSwitch" onclick="toggleMode()">🌞</button>
-<button id="searchButton" onclick="toggleSearch()">🔍</button>
-<div id="searchDiv" style="display:none;">
-    <input id="searchInput" type="text" onkeyup="searchContent()" placeholder="搜索内容...">
-    <ul id="searchResult"></ul>
+<!-- ...你的其他HTML代码... -->
+<div id="header">
+    <button id="toggleButton" onclick="toggleToc()">☰</button>
+    <button id="themeSwitch" onclick="switchTheme()">🌞</button>
+    <button id="searchButton" onclick="openSearch()">🔍</button>
 </div>
+<!-- ...你的其他HTML代码... -->
+
 
 <input type="text" id="searchInput" style="display:none;">
 
@@ -153,6 +154,21 @@ body.light-mode a {
 body.light-mode #modeSwitch::before {
     content: "🌙";
 }
+/* ...你的其他CSS代码... */
+#header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* 添加半透明背景，可根据需要调整 */
+}
+#header button {
+    margin: 10px;
+}
+/* ...你的其他CSS代码... */
+
 
 
 
@@ -298,6 +314,24 @@ function toggleMode() {
         body.classList.add('dark-mode');
     }
 }
+        // ...你的其他JavaScript代码...
+
+var lastScrollTop = 0;
+window.addEventListener("scroll", function() {
+    var header = document.getElementById('header');
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop){
+        // 在向下滚动时，隐藏header
+        header.style.top = "-50px";  // -50px应与header的高度相同
+    } else {
+        // 在向上滚动时，显示header
+        header.style.top = "0";
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+}, false);
+
+// ...你的其他JavaScript代码...
+
 
     </script>
 <div id="content">
