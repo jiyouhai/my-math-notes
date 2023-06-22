@@ -149,7 +149,10 @@ body.light-mode a {
 body.light-mode #modeSwitch::before {
     content: "🌙";
 }
-/* ...你的其他CSS代码... */
+body.full-screen {
+    width: 100%;
+    overflow: auto;
+}
 #header {
     position: fixed;
     top: 0;
@@ -371,6 +374,13 @@ function toggleMenu() {
     var menu = document.getElementById('menu');
     menu.classList.toggle('open');
 }
+        function toggleMenu() {
+    var menu = document.getElementById('menu');
+    var body = document.body;
+    menu.classList.toggle('open');
+    body.classList.toggle('full-screen');
+}
+
 
 
 
