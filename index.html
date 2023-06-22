@@ -23,10 +23,36 @@
             height: 0px;
             overflow: hidden;
         }
+        #menu {
+    display: none;
+    /* 更多样式... */
+}
+
+#menuToggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    /* 更多样式... */
+}
+
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin: 6px auto;
+    transition: all 0.3s;
+    background-color: #333;
+}
+
     </style>
 </head>
 <body>
-    <button id="toggleButton" onclick="toggleToc()"></button>
+    <div id="menuToggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
     <div id="toc">
         <h2>目录</h2>
         <button onclick="toggleContent(this)">专业课课程指导</button>
@@ -108,6 +134,15 @@
                 toc.classList.add('minimized');
             }
         }
+        function toggleMenu() {
+    var menu = document.getElementById('menu');
+    if (menu.style.display === 'none') {
+        menu.style.display = 'block';
+    } else {
+        menu.style.display = 'none';
+    }
+}
+
     </script>
 <div id="content">
     <h1 id="advice">给新生的建议</h1>
