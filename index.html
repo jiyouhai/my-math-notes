@@ -35,20 +35,40 @@
             overflow: hidden;
         }
 
-#content {
-    margin-left: 220px; /* Desktop version */
-    /* 更多样式... */
+        #menu {
+    position: absolute; /* Updated */
+    top: 0;
+    left: 0;
+    width: 0; /* Updated */
+    overflow-x: hidden; /* New */
+    transition: width 0.5s; /* New */
 }
+
+#menu.open {
+    width: 40%; /* Or any percentage you like */
+}
+
+#content {
+    transition: margin-left 0.5s;
+}
+
+#content.full-screen {
+    margin-left: 0;
+}
+
+#content.not-full-screen {
+    margin-left: 40%; /* Or any percentage you like */
+}
+
 @media screen and (max-width: 600px) {
     #menu {
         position: static;
         top: auto;
         left: auto;
     }
-    #content {
-        margin-left: 0;
-    }
 }
+
+
 
 
 
@@ -262,6 +282,13 @@ body.menu-open #toc {
     </div>
 
     <script>
+    function toggleMenu() {
+    var menu = document.getElementById('menu');
+    var content = document.getElementById('content');
+    menu.classList.toggle('open');
+    content.classList.toggle('full-screen');
+}
+
          var index = lunr(function () {
         this.ref('id')
         this.field('text')
@@ -372,20 +399,23 @@ function toggleMenu() {
 }
 function toggleMenu() {
     var menu = document.getElementById('menu');
+    var content = document.getElementById('content');
     menu.classList.toggle('open');
+    if(content.classList.contains('not-full-screen')){
+        content.classList.remove('not-full-screen');
+        content.classList.add('full-screen');
+    } else {
+        content.classList.remove('full-screen');
+        content.classList.add('not-full-screen');
+    }
 }
-        function toggleMenu() {
-    var menu = document.getElementById('menu');
-    var body = document.body;
-    menu.classList.toggle('open');
-    body.classList.toggle('full-screen');
-}
+
 
 
 
 
     </script>
-<div id="content">
+<div id="content" class="full-screen">
     <h1 id="advice">给新生的建议</h1>
     <p>在此，分享一些我的相关感悟。</p>
     <p>我来天大的最开始，最忧心的一件事儿就是课程和教材找不到答案。所以我的大一上学期过得很艰难，当时就是各种教材各种地方想办法拼凑出课后习题的答案。</p>
