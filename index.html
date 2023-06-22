@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<button id="searchButton">&#128269;</button>
+<input type="text" id="searchInput" style="display:none;">
+
 <head>
     <title>天大数学系本科生指北</title>
     <style>
@@ -62,8 +65,26 @@
     transition: all 0.3s;
     background-color: #333;
 }
+        #searchButton {
+    position: fixed;
+    top: 10px;
+    right: 70px;
+    font-size: 30px;
+    background: none;
+    border: none;
+}
+
+#searchInput {
+    position: fixed;
+    top: 10px;
+    right: 70px;
+    font-size: 18px;
+    padding: 2px;
+}
+
 
     </style>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
 </head>
 <body>
 <div id="menuToggle" onclick="toggleMenu()">
@@ -115,6 +136,26 @@
     </div>
 
     <script>
+         var index = lunr(function () {
+        this.ref('id')
+        this.field('text')
+
+        // 在这里添加你的文本和对应的id，例如：
+        this.add({
+            "id": 1,
+            "text": "这是第一段文本。",
+        })
+        // 重复上述过程，为你网站上的每段内容添加索引
+    })
+
+    // 这个函数应当在用户输入关键词并点击搜索按钮后调用
+    function search(keyword) {
+        var results = index.search(keyword)
+
+        // 处理并显示结果
+        // 注意，这里需要你根据你的具体需求自行实现
+        console.log(results)
+    }
         function toggleContent(btn) {
             var content = btn.nextElementSibling;
             if (content.style.display === "none") {
@@ -159,6 +200,20 @@
         menu.style.display = 'none';
     }
 }
+        document.getElementById('searchButton').addEventListener('click', function() {
+    var input = document.getElementById('searchInput');
+    if (input.style.display === 'none') {
+        input.style.display = 'block';
+        input.focus();
+    } else {
+        input.style.display = 'none';
+    }
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    search(this.value);
+});
+
 
     </script>
 <div id="content">
