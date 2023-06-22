@@ -3,187 +3,112 @@
 <head>
     <title>天大数学系本科生指北</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-            box-sizing: border-box;
+        #toggleButton {
+            position: fixed;  
+            top: 10px;
+            right: 10px;
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;  
+            background-color: #ccc;  
+            border: none;  
+            text-indent: -9999px;  
         }
-        #content {
-            flex: 1;
-            max-width: 800px;
-            font-size: 20px; /* 增大字体大小 */
-            margin-top: 200px;  /* 修改此处，根据目录的实际高度调整 */
-            box-sizing: border-box;
-        }
-        #toc {
-            flex: 0 0 200px;
-            position: sticky;
-            top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-sizing: border-box;
-            transition: all 0.5s ease;  /* 添加过渡效果 */
+        #toggleButton:hover {
+            background-color: #999;  
+            cursor: pointer;  
         }
         #toc.minimized {
-            max-height: 50px;  /* 控制最小化时的高度 */
-            overflow: hidden;  /* 隐藏多余的内容 */
+            width: 0px;
+            height: 0px;
+            overflow: hidden;
         }
-        .collapsibleContent {
-            display: none;
-        }
-        @media (max-width: 992px) {
-            #content, #toc {
-                flex-basis: 100%;
-                max-width: 100%;
-            }
-        }
-        #toc button {
-            font-size: 1.2rem;
-        }
-        @media (max-width: 600px) {
-            body {
-                font-size: 1.2rem;
-            }
-            #content, #toc {
-                flex-basis: 100%;
-                max-width: 100%;
-                margin: 10px;
-            }
-        }
-        <style>
-    /* ...你现有的CSS代码... */
-
-    #toggleButton {
-        position: fixed;  /* 让按钮浮动 */
-        top: 10px;
-        right: 10px;
-        width: 50px;  /* 控制按钮的宽度 */
-        height: 50px;  /* 控制按钮的高度 */
-        border-radius: 50%;  /* 让按钮变为圆形 */
-        background-color: #ccc;  /* 设置按钮的背景色 */
-        border: none;  /* 去掉边框 */
-        text-indent: -9999px;  /* 隐藏按钮上的文本 */
-    }
-    #toggleButton:hover {
-        background-color: #999;  /* 鼠标悬停时改变背景色 */
-        cursor: pointer;  /* 鼠标悬停时显示手形光标 */
-    }
-
-        #toc.minimized {
-  width: 0px;
-  height: 0px;
-  overflow: hidden;
-}
-
     </style>
 </head>
 <body>
-   <button id="toggleButton" onclick="toggleToc()"></button>
-   <div id="toc">
-    <h2>目录</h2>
-    <button onclick="toggleContent(this)">专业课课程指导</button>
-    <div id="myDIV">
-        <ul>
-            <li><a href="#first-year-fall">大一上</a>
-                <ul>
-                    <li><a href="#math-analysis-a">数学分析A</a></li>
-                    <li><a href="#advanced-algebra-a">高等代数A</a></li>
-                    <li><a href="#math-analysis-a-advanced-algebra-a">数学分析A/高等代数A专题</a></li>
-                </ul>
-            </li>
-            <li><a href="#first-year-spring">大一下</a>
-                <ul>
-                    <li><a href="#math-analysis-b">数学分析B</a></li>
-                    <li><a href="#advanced-algebra-b">高等代数B</a></li>
-                    <li><a href="#math-analysis-b-advanced-algebra-b">数学分析B/高等代数B专题</a></li>
-                    <li><a href="#computer-language">计算机语言（C++）</a></li>
-                </ul>
-            </li>
-            <li><a href="#second-year-fall">大二上</a>
-                <ul>
-                    <li><a href="#probability-theory">概率论</a></li>
-                    <li><a href="#ode">常微分方程（ODE）</a></li>
-                    <li><a href="#math-analysis-c">数学分析C</a></li>
-                    <li><a href="#abstract-algebra">抽象代数</a></li>
-                </ul>
-            </li>
-            <li><a href="#second-year-spring">大二下</a>
-                <ul>
-                    <li><a href="#real-function">实变函数</a></li>
-                    <li><a href="#complex-function">复变函数</a></li>
-                    <li><a href="#topology">拓扑学</a></li>
-                    <li><a href="#math-statistics">数理统计</a></li>
-                    <li><a href="#math-model">数学模型</a></li>
-                    <li><a href="#database">数据库</a></li>
-                    <li><a href="#number-theory">数论</a></li>
-                </ul>
-            </li>
-            <li><a href="#third-year-fall">大三上</a></li>
-            <!-- 其他学期的目录项 -->
-        </ul>
+    <button id="toggleButton" onclick="toggleToc()"></button>
+    <div id="toc">
+        <h2>目录</h2>
+        <button onclick="toggleContent(this)">专业课课程指导</button>
+        <div id="myDIV">
+            <ul>
+                <li><a href="#first-year-fall">大一上</a>
+                    <ul>
+                        <li><a href="#math-analysis-a">数学分析A</a></li>
+                        <li><a href="#advanced-algebra-a">高等代数A</a></li>
+                        <li><a href="#math-analysis-a-advanced-algebra-a">数学分析A/高等代数A专题</a></li>
+                    </ul>
+                </li>
+                <li><a href="#first-year-spring">大一下</a>
+                    <ul>
+                        <li><a href="#math-analysis-b">数学分析B</a></li>
+                        <li><a href="#advanced-algebra-b">高等代数B</a></li>
+                        <li><a href="#math-analysis-b-advanced-algebra-b">数学分析B/高等代数B专题</a></li>
+                        <li><a href="#computer-language">计算机语言（C++）</a></li>
+                    </ul>
+                </li>
+                <li><a href="#second-year-fall">大二上</a>
+                    <ul>
+                        <li><a href="#probability-theory">概率论</a></li>
+                        <li><a href="#ode">常微分方程（ODE）</a></li>
+                        <li><a href="#math-analysis-c">数学分析C</a></li>
+                        <li><a href="#abstract-algebra">抽象代数</a></li>
+                    </ul>
+                </li>
+                <li><a href="#second-year-spring">大二下</a>
+                    <ul>
+                        <li><a href="#real-function">实变函数</a></li>
+                        <li><a href="#complex-function">复变函数</a></li>
+                        <li><a href="#topology">拓扑学</a></li>
+                        <li><a href="#math-statistics">数理统计</a></li>
+                        <li><a href="#math-model">数学模型</a></li>
+                        <li><a href="#database">数据库</a></li>
+                        <li><a href="#number-theory">数论</a></li>
+                    </ul>
+                </li>
+                <!-- 更多学期的目录项 -->
+            </ul>
+        </div>
     </div>
-</div>
 
-<script>
-function toggleContent(btn) {
-    var content = btn.nextElementSibling;
-    if (content.style.display === "none") {
-        content.style.display = "block";
-    } else {
-        content.style.display = "none";
-    }
-}
-
-// 直接在页面加载完毕后，将所有的.collapsibleContent设置为可折叠
-window.onload = function() {
-        var coll = document.getElementsByTagName('li');
-        for (var i = 0; i < coll.length; i++) {
-            var sublist = coll[i].getElementsByTagName('ul')[0];
-            if(sublist) {
-                sublist.style.display = 'none';
-                coll[i].addEventListener("click", function(e) {
-                    e.stopPropagation();
-                    var sublist = this.getElementsByTagName('ul')[0];
-                    if (sublist.style.display === "block") {
-                        sublist.style.display = "none";
-                    } else {
-                        sublist.style.display = "block";
-                    }
-                });
+    <script>
+        function toggleContent(btn) {
+            var content = btn.nextElementSibling;
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
             }
         }
-    }
 
-function toggleToc() {
-    var toc = document.getElementById('toc');
-    if (toc.classList.contains('minimized')) {
-        toc.classList.remove('minimized');
-    } else {
-        toc.classList.add('minimized');
-    }
-}
+        window.onload = function() {
+            var coll = document.getElementsByTagName('li');
+            for (var i = 0; i < coll.length; i++) {
+                var sublist = coll[i].getElementsByTagName('ul')[0];
+                if(sublist) {
+                    sublist.style.display = 'none';
+                    coll[i].addEventListener("click", function(e) {
+                        e.stopPropagation();
+                        var sublist = this.getElementsByTagName('ul')[0];
+                        if (sublist.style.display === "block") {
+                            sublist.style.display = "none";
+                        } else {
+                            sublist.style.display = "block";
+                        }
+                    });
+                }
+            }
+        }
 
-function toggleToc() {
-  var toc = document.getElementById('toc');
-  if (toc.classList.contains('minimized')) {
-    toc.classList.remove('minimized');
-  } else {
-    toc.classList.add('minimized');
-  }
-}
-document.getElementById('toggleButton').addEventListener('click', function() {
-  var toc = document.getElementById('toc');
-  toc.classList.toggle('minimized');
-});
-
-</script>
+        function toggleToc() {
+            var toc = document.getElementById('toc');
+            if (toc.classList.contains('minimized')) {
+                toc.classList.remove('minimized');
+            } else {
+                toc.classList.add('minimized');
+            }
+        }
+    </script>
 <div id="content">
     <h1 id="advice">给新生的建议</h1>
     <p>在此，分享一些我的相关感悟。</p>
