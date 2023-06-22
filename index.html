@@ -14,6 +14,18 @@
 <head>
     <title>天大数学系本科生指北</title>
     <style>
+        .parent {
+    font-weight: bold;
+}
+
+.child {
+    font-weight: normal;
+}
+.opened {
+    list-style-type: none;
+}
+
+
         #toggleButton {
             position: fixed;  
             top: 10px;
@@ -346,25 +358,27 @@ document.getElementById('your-button-id').addEventListener('click', toggleMenu);
                 content.style.display = "none";
             }
         }
-
-        window.onload = function() {
-            var coll = document.getElementsByTagName('li');
-            for (var i = 0; i < coll.length; i++) {
-                var sublist = coll[i].getElementsByTagName('ul')[0];
-                if(sublist) {
-                    sublist.style.display = 'none';
-                    coll[i].addEventListener("click", function(e) {
-                        e.stopPropagation();
-                        var sublist = this.getElementsByTagName('ul')[0];
-                        if (sublist.style.display === "block") {
-                            sublist.style.display = "none";
-                        } else {
-                            sublist.style.display = "block";
-                        }
-                    });
+window.onload = function() {
+    var coll = document.getElementsByTagName('li');
+    for (var i = 0; i < coll.length; i++) {
+        var sublist = coll[i].getElementsByTagName('ul')[0];
+        if(sublist) {
+            sublist.style.display = 'none';
+            coll[i].addEventListener("click", function(e) {
+                e.stopPropagation();
+                var sublist = this.getElementsByTagName('ul')[0];
+                if (sublist.style.display === "block") {
+                    sublist.style.display = "none";
+                    this.classList.remove('opened');  // 添加这一行
+                } else {
+                    sublist.style.display = "block";
+                    this.classList.add('opened');  // 添加这一行
                 }
-            }
+            });
         }
+    }
+}
+
 
         function toggleToc() {
             var toc = document.getElementById('toc');
