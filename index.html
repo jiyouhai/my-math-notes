@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>天大数学系新生指北</title>
+    <title>天大数学系本科生指北</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +19,7 @@
             flex: 1;
             max-width: 800px;
             font-size: 20px; /* 增大字体大小 */
+            margin-top: 200px;  /* 修改此处，根据目录的实际高度调整 */
             box-sizing: border-box;
         }
         #toc {
@@ -28,6 +29,11 @@
             border: 1px solid #ccc;
             padding: 10px;
             box-sizing: border-box;
+            transition: all 0.5s ease;  /* 添加过渡效果 */
+        }
+        #toc.minimized {
+            max-height: 50px;  /* 控制最小化时的高度 */
+            overflow: hidden;  /* 隐藏多余的内容 */
         }
         .collapsibleContent {
             display: none;
@@ -50,6 +56,11 @@
                 max-width: 100%;
                 margin: 10px;
             }
+        }
+        #toggleButton {
+            position: fixed;  /* 让按钮浮动 */
+            top: 10px;
+            right: 10px;
         }
     </style>
 </head>
@@ -101,30 +112,39 @@
 
 <script>
 function toggleContent(btn) {
-  var content = btn.nextElementSibling;
-  if (content.style.display === "none") {
-    content.style.display = "block";
-  } else {
-    content.style.display = "none";
-  }
+    var content = btn.nextElementSibling;
+    if (content.style.display === "none") {
+        content.style.display = "block";
+    } else {
+        content.style.display = "none";
+    }
 }
 
 // 直接在页面加载完毕后，将所有的.collapsibleContent设置为可折叠
 window.onload = function() {
-  var coll = document.getElementsByClassName('collapsible');
-  for (var i = 0; i < coll.length; i++) {
-    var content = coll[i].nextElementSibling;
-    content.style.display = "none";
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.display === "block") {
+    var coll = document.getElementsByClassName('collapsible');
+    for (var i = 0; i < coll.length; i++) {
+        var content = coll[i].nextElementSibling;
         content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  }
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+}
+
+function toggleToc() {
+    var toc = document.getElementById('toc');
+    if (toc.classList.contains('minimized')) {
+        toc.classList.remove('minimized');
+    } else {
+        toc.classList.add('minimized');
+    }
 }
 </script>
 <div id="content">
@@ -136,7 +156,14 @@ window.onload = function() {
     <h1 id="major-course-guidance">专业课课程指导</h1>
     <h2 id="first-year-fall">大一上</h2>
     <h3 id="math-analysis-a">数学分析A</h3>
-    <!-- 数学分析A相关内容 -->
+    <p>数学学院的数学分析一般来说有两个课程体系，当然内容都差不多，一个课程体系使用的教材是伍胜健的数学分析系列，一个课程体系使用的教材是周泽华曾红刚等老师编写的数学分析教材，也是天津大学自己的数学分析教材。我只有伍胜健数学分析的答案。</p>
+    <p>这里是伍胜健数学分析A的教材链接：</p>
+    <p>这里是伍胜健数学分析A的答案链接：</p>
+    <p>这里是周泽华数学分析A的教材链接：</p>
+    <p>不过数学分析的很多答案都可以网上搜出来比如用大学搜题酱等软件。</p>
+    <p>数院老师一般都不点名或者很少点名，如果你想要自学不听课的话推荐陈纪修老师的数学分析课程，讲得也非常清楚明白。</p>
+    <p>这里是陈纪修老师哔哩哔哩网课链接：</p>
+
     <h3 id="advanced-algebra-a">高等代数A</h3>
     <!-- 高等代数A相关内容 -->
     <h3 id="math-analysis-a-advanced-algebra-a">数学分析A/高等代数A专题</h3>
