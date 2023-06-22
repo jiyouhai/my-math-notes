@@ -35,17 +35,24 @@
             overflow: hidden;
         }
 
-        #menu {
-    position: absolute; /* Updated */
+#menu {
+    position: absolute;
     top: 0;
     left: 0;
-    width: 0; /* Updated */
-    overflow-x: hidden; /* New */
-    transition: width 0.5s; /* New */
+    width: 0;
+    overflow-x: hidden;
+    transition: width 0.5s;
+    background-color: white; /* Adding a background color to prevent seeing the content behind */
+    color: black; /* Making the text color black */
+}
+
+#menu a {
+    text-decoration: none; /* Removing the underline */
+    color: black; /* Making the link color black */
 }
 
 #menu.open {
-    width: 20%; /* Or any percentage you like */
+    width: 20%;
 }
 
 #content {
@@ -57,7 +64,7 @@
 }
 
 #content.not-full-screen {
-    margin-left: 20%; /* Or any percentage you like */
+    margin-left: 20%;
 }
 
 @media screen and (max-width: 600px) {
@@ -67,10 +74,6 @@
         left: auto;
     }
 }
-
-
-
-
 
 #menuToggle {
     position: fixed;
@@ -282,14 +285,7 @@ body.menu-open #toc {
     </div>
 
     <script>
-    function toggleMenu() {
-    var menu = document.getElementById('menu');
-    var content = document.getElementById('content');
-    menu.classList.toggle('open');
-    content.classList.toggle('full-screen');
-}
-
-         var index = lunr(function () {
+      var index = lunr(function () {
         this.ref('id')
         this.field('text')
 
@@ -347,12 +343,17 @@ body.menu-open #toc {
         }
         function toggleMenu() {
     var menu = document.getElementById('menu');
-    if (menu.style.display === 'none') {
-        menu.style.display = 'block';
+    var content = document.getElementById('content');
+    menu.classList.toggle('open');
+    if(content.classList.contains('not-full-screen')){
+        content.classList.remove('not-full-screen');
+        content.classList.add('full-screen');
     } else {
-        menu.style.display = 'none';
+        content.classList.remove('full-screen');
+        content.classList.add('not-full-screen');
     }
 }
+
         document.getElementById('searchButton').addEventListener('click', function() {
     var input = document.getElementById('searchInput');
     if (input.style.display === 'none') {
