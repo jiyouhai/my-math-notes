@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
-<button id="searchButton">&#128269;</button>
+<button id="toggleButton" onclick="toggleToc()">☰</button>
+<button id="modeSwitch" onclick="toggleMode()">🌞</button>
+<button id="searchButton" onclick="toggleSearch()">🔍</button>
+<div id="searchDiv" style="display:none;">
+    <input id="searchInput" type="text" onkeyup="searchContent()" placeholder="搜索内容...">
+    <ul id="searchResult"></ul>
+</div>
+
 <input type="text" id="searchInput" style="display:none;">
 
 <head>
@@ -81,6 +88,72 @@
     font-size: 18px;
     padding: 2px;
 }
+        #toggleButton, #modeSwitch, #searchButton {
+    position: fixed;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    font-size: 1.5rem;
+    background: none;
+}
+
+#modeSwitch {
+    right: 10px;
+}
+
+#searchButton {
+    right: 70px;
+}
+
+#searchDiv {
+    position: fixed;
+    top: 60px;
+    right: 70px;
+    background-color: #fff;
+}
+
+#searchResult {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* 夜间模式样式 */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode #toc, body.dark-mode #content {
+    background-color: #555;
+}
+
+body.dark-mode a {
+    color: #0ff;
+}
+
+body.dark-mode #modeSwitch::before {
+    content: "🌞";
+}
+
+/* 白天模式样式 */
+body.light-mode {
+    background-color: #fff;
+    color: #000;
+}
+
+body.light-mode #toc, body.light-mode #content {
+    background-color: #ddd;
+}
+
+body.light-mode a {
+    color: #00f;
+}
+
+body.light-mode #modeSwitch::before {
+    content: "🌙";
+}
+
 
 
     </style>
@@ -214,6 +287,17 @@ document.getElementById('searchInput').addEventListener('input', function() {
     search(this.value);
 });
 
+        // 切换夜间/白天模式
+function toggleMode() {
+    var body = document.body;
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+    } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+    }
+}
 
     </script>
 <div id="content">
