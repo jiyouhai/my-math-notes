@@ -1,16 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- ...你的其他HTML代码... -->
-<div id="header">
-    <button id="toggleButton" onclick="toggleToc()">☰</button>
-    <button id="themeSwitch" onclick="switchTheme()">🌞</button>
-    <button id="searchButton" onclick="openSearch()">🔍</button>
-</div>
-<!-- ...你的其他HTML代码... -->
-
-
-<input type="text" id="searchInput" style="display:none;">
-
 <head>
     <title>天大数学系本科生指北</title>
     <style>
@@ -260,11 +249,14 @@ body.menu-open #toc {
     <script src="https://unpkg.com/lunr/lunr.js"></script>
 </head>
 <body>
-<div id="menuToggle" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+<body>
+    <div id="header">
+        <button id="toggleButton" onclick="toggleMenu()">☰</button>
+        <button id="themeSwitch" onclick="toggleMode()">🌞</button>
+        <button id="searchButton" onclick="toggleSearch()">🔍</button>
+    </div>
+    <input type="text" id="searchInput" style="display:none;">
+    <!-- ...你的其他HTML代码... -->
 <div id="menu">
     <!-- 去掉"专业课课程指导"，把其下的目录内容直接放在这里 -->
     <div id="myDIV">
@@ -345,17 +337,11 @@ body.menu-open #toc {
     }
 
     // 切换菜单
-    function toggleMenu() {
+ function toggleMenu() {
         var menu = document.getElementById('menu');
         var content = document.getElementById('content');
         menu.classList.toggle('open');
-        if(content.classList.contains('not-full-screen')){
-            content.classList.remove('not-full-screen');
-            content.classList.add('full-screen');
-        } else {
-            content.classList.remove('full-screen');
-            content.classList.add('not-full-screen');
-        }
+        content.classList.toggle('full-screen');
     }
 
     // 隐藏或显示头部
@@ -372,7 +358,7 @@ body.menu-open #toc {
     }, false);
 
     // 切换搜索输入框显示
-    document.getElementById('searchButton').addEventListener('click', function() {
+ function toggleSearch() {
         var input = document.getElementById('searchInput');
         if (input.style.display === 'none') {
             input.style.display = 'block';
@@ -380,7 +366,8 @@ body.menu-open #toc {
         } else {
             input.style.display = 'none';
         }
-    });
+    }
+
 
     // 处理搜索输入
     document.getElementById('searchInput').addEventListener('input', function() {
